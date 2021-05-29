@@ -40,6 +40,7 @@ import com.salesmanager.shop.model.content.box.ReadableContentBox;
 import com.salesmanager.shop.model.content.page.PersistableContentPage;
 import com.salesmanager.shop.model.content.page.ReadableContentPage;
 import com.salesmanager.shop.model.entity.Entity;
+import com.salesmanager.shop.model.entity.EntityExists;
 import com.salesmanager.shop.model.entity.ReadableEntityList;
 import com.salesmanager.shop.store.api.exception.ServiceRuntimeException;
 import com.salesmanager.shop.store.controller.content.facade.ContentFacade;
@@ -63,6 +64,9 @@ public class ContentApi {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ContentApi.class);
 
 	private static final String DEFAULT_PATH = "/";
+	
+	private final static String BOX = "BOX";
+	private final static String PAGE = "PAGE";
 
 	@Inject
 	private ContentFacade contentFacade;
@@ -113,8 +117,9 @@ public class ContentApi {
 	 */
 	@GetMapping(value = {"/content/boxes","/private/content/boxes"}, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(httpMethod = "GET", value = "Get boxes for a given MerchantStore", notes = "", produces = "application/json", response = List.class)
-	@ApiImplicitParams({ @ApiImplicitParam(name = "store", dataType = "String", defaultValue = "DEFAULT"),
-			@ApiImplicitParam(name = "lang", dataType = "String", defaultValue = "en") })
+	@ApiImplicitParams({ 
+		@ApiImplicitParam(name = "store", dataType = "String", defaultValue = "DEFAULT"),
+		@ApiImplicitParam(name = "lang", dataType = "String", defaultValue = "en") })
 	public ReadableEntityList<ReadableContentBox> boxes(
 			@ApiIgnore MerchantStore merchantStore,
 			@ApiIgnore Language language,
@@ -182,6 +187,38 @@ public class ContentApi {
 		Long id = contentFacade.saveContentBox(box, merchantStore, language);
 		Entity entity = new Entity();
 		entity.setId(id);
+		return entity;
+	}
+	
+	@GetMapping(value = "/private/content/box/{code}/exists")
+	@ResponseStatus(HttpStatus.OK)
+	@ApiOperation(httpMethod = "GET", value = "Check unique content box", notes = "", response = EntityExists.class)
+	@ApiImplicitParams({ 
+		@ApiImplicitParam(name = "store", dataType = "String", defaultValue = "DEFAULT"),
+		@ApiImplicitParam(name = "lang", dataType = "String", defaultValue = "en") })
+	public EntityExists boxExists(
+			@PathVariable String code, 
+			@ApiIgnore MerchantStore merchantStore,
+			@ApiIgnore Language language) {
+
+		boolean exists = contentFacade.codeExist(code, BOX, merchantStore);
+		EntityExists entity = new EntityExists(exists);
+		return entity;
+	}
+	
+	@GetMapping(value = "/private/content/page/{code}/exists")
+	@ResponseStatus(HttpStatus.OK)
+	@ApiOperation(httpMethod = "GET", value = "Check unique content page", notes = "", response = EntityExists.class)
+	@ApiImplicitParams({ 
+		@ApiImplicitParam(name = "store", dataType = "String", defaultValue = "DEFAULT"),
+		@ApiImplicitParam(name = "lang", dataType = "String", defaultValue = "en") })
+	public EntityExists pageExists(
+			@PathVariable String code, 
+			@ApiIgnore MerchantStore merchantStore,
+			@ApiIgnore Language language) {
+
+		boolean exists = contentFacade.codeExist(code, PAGE, merchantStore);
+		EntityExists entity = new EntityExists(exists);
 		return entity;
 	}
 	
@@ -312,7 +349,7 @@ public class ContentApi {
 			@ApiImplicitParam(name = "lang", dataType = "String", defaultValue = "en") })
 	public ReadableContentBox manageBoxByCode(@PathVariable("code") String code, @ApiIgnore MerchantStore merchantStore,
 			@ApiIgnore Language language) {
-		return contentFacade.manageContentBox(code, merchantStore, language);
+		return contentFacade.getContentBox(code, merchantStore, language);
 	}
 
 	@GetMapping(value = "/content/boxes/{code}", produces = MediaType.APPLICATION_JSON_VALUE)
