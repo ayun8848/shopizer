@@ -59,7 +59,7 @@ response.setDateHeader ("Expires", -1);
 
 		<div class="row">
 
-  			<div class="span4"><a class="brand" href="#"><img src="<c:url value="/resources/img/shopizer_small.jpg" />"/></a></div>
+  			<div class="span4"><a class="brand" href="#"><img src="<c:url value="/resources/img/logo.jpg" />"/></a></div>
 
   			<div class="span4 offset4">
 
@@ -163,7 +163,7 @@ response.setDateHeader ("Expires", -1);
   
   
 		<footer> 
- 			<p>&copy; Shopizer 2010-<%=Calendar.getInstance().get(Calendar.YEAR)%></p> 
+ 			<p>&copy; Auto Parts Professor 2015-<%=Calendar.getInstance().get(Calendar.YEAR)%></p>
 		</footer> 
   
   
