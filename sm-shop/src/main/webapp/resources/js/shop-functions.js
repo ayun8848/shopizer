@@ -67,7 +67,7 @@ function searchProducts(url,divProductsContainer,q,filter) {
 
 	if(q==null || q=='') {
 		//Because the loading effects have been turned on before
-		$('#productsContainer').hideLoading();
+		$(divProductsContainer).hideLoading();
 		return;
 	}
 
