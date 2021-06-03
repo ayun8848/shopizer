@@ -197,7 +197,7 @@ response.setDateHeader ("Expires", -1);
         							<button class="btn btn-default searchButton" type="button"><s:message code="label.generic.search" text="Search"/></button>
    								</span>
 								<!-- important for submitting search -->
-                                <form id="hiddenSearchForm" method="post" action="<c:url value="/shop/search/search.html"/>">
+                                <form id="hiddenSearchForm" method="get" action="<c:url value="/shop/search/search.html"/>">
 										<input type="hidden" id="hiddenQuery" name="q">
 								</form>
 							</div>

@@ -337,7 +337,7 @@ $(document).ready(function() {
         </div>
         <!-- end row -->
       </form>
-      <form id="hiddenSearchForm" method="post" action="<c:url value="/shop/search/search.html"/>">
+      <form id="hiddenSearchForm" method="get" action="<c:url value="/shop/search/search.html"/>">
 			<input type="hidden" id="hiddenQuery" name="q">
 	  </form>
       </c:if>

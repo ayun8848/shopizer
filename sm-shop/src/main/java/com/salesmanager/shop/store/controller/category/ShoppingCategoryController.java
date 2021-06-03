@@ -141,7 +141,7 @@ public class ShoppingCategoryController {
 		
 		//set ref as request attribute
 		String encoded = SanitizeUtils.getSafeRequestParamString(ref);
-		if(!encoded.equals(ref)) {//possible xss
+		if(ref != null && !encoded.equals(ref)) {//possible xss
 			throw new Exception("Wrong input parameter [" + ref + "]");
 		}
 		request.setAttribute("ref", encoded);

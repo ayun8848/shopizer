@@ -270,7 +270,7 @@ $(document).ready(function() {
                                         <div class="btn-group dropdown">
                                             <button type="button" class="btn dropdown-toggle no-responsive searchButton" data-toggle="dropdown"><i class="fa fa-search"></i><span class="uppercase"><s:message code="label.generic.search" text="Search" /></span></button>
                                             <!-- important for submitting search -->
-                                            <form id="hiddenSearchForm" method="post" action="<c:url value="/shop/search/search.html"/>">
+                                            <form id="hiddenSearchForm" method="get" action="<c:url value="/shop/search/search.html"/>">
 												<input type="hidden" id="hiddenQuery" name="q">
 											</form>
                                         </div>

@@ -136,7 +136,7 @@ public class SearchController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value={"/shop/search/search.html"}, method=RequestMethod.POST)
+	@RequestMapping(value={"/shop/search/search.html"}, method={RequestMethod.POST,RequestMethod.GET})
 	public String displaySearch(@RequestParam("q") String query, Model model, HttpServletRequest request, HttpServletResponse response, Locale locale) throws Exception {
 
 		MerchantStore store = (MerchantStore)request.getAttribute(Constants.MERCHANT_STORE);
