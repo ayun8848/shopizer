@@ -467,10 +467,6 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/javax.mail/javax.mail-api -->
-		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>javax.mail-api</artifactId>
-		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
 		<dependency>
