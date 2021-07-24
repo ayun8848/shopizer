@@ -31,3 +31,9 @@ sm-shop/src/main/resources/database.properties
 .DS_Store
 
 .mvnw/*.jar
+*.dat
+sm-shop/files/store/DownlaodRepository.dat
+*.dat
+sm-shop/files/store/DownlaodRepository.dat
+sm-shop/src/main/resources/application.properties
+sm-shop/src/main/resources/database.properties
