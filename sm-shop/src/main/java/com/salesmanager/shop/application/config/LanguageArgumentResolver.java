@@ -1,6 +1,7 @@
 package com.salesmanager.shop.application.config;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
@@ -29,8 +30,9 @@ public class LanguageArgumentResolver implements HandlerMethodArgumentResolver {
       NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
 
     HttpServletRequest request = webRequest.getNativeRequest(HttpServletRequest.class);
+    HttpServletResponse response = webRequest.getNativeResponse(HttpServletResponse.class);
 
-    return languageUtils.getRESTLanguage(request);
+    return languageUtils.getRequestLanguage(request, response);
   }
 
 }
