@@ -2,6 +2,7 @@ package com.salesmanager.shop.mapper.catalog;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
 import com.salesmanager.core.business.constants.Constants;
 import com.salesmanager.core.business.exception.ConversionException;
 import com.salesmanager.core.business.services.catalog.category.CategoryService;
+import com.salesmanager.core.business.services.catalog.product.manufacturer.ManufacturerService;
 import com.salesmanager.core.business.services.catalog.product.type.ProductTypeService;
 import com.salesmanager.core.business.services.reference.language.LanguageService;
 import com.salesmanager.core.model.catalog.category.Category;
@@ -22,6 +24,7 @@ import com.salesmanager.core.model.catalog.product.Product;
 import com.salesmanager.core.model.catalog.product.attribute.ProductAttribute;
 import com.salesmanager.core.model.catalog.product.availability.ProductAvailability;
 import com.salesmanager.core.model.catalog.product.description.ProductDescription;
+import com.salesmanager.core.model.catalog.product.manufacturer.Manufacturer;
 import com.salesmanager.core.model.catalog.product.price.ProductPrice;
 import com.salesmanager.core.model.catalog.product.price.ProductPriceDescription;
 import com.salesmanager.core.model.catalog.product.type.ProductType;
@@ -45,6 +48,10 @@ public class PersistableProductDefinitionMapper implements Mapper<PersistablePro
 	
 	@Autowired
 	private ProductTypeService productTypeService;
+	
+	@Autowired
+	private ManufacturerService manufacturerService;
+	
 	@Override
 	public Product convert(PersistableProductDefinition source, MerchantStore store, Language language) {
 		Product product = new Product();
@@ -63,11 +70,22 @@ public class PersistableProductDefinitionMapper implements Mapper<PersistablePro
 
 			destination.setSku(source.getIdentifier());
 			destination.setAvailable(source.isVisible());
+			destination.setDateAvailable(new Date());
+
 			destination.setRefSku(source.getIdentifier());
 			if(source.getId() != null && source.getId().longValue()==0) {
 				destination.setId(null);
 			} else {
 				destination.setId(source.getId());
+			}
+			
+			//MANUFACTURER
+			if(!StringUtils.isBlank(source.getManufacturer())) {
+				Manufacturer manufacturer = manufacturerService.getByCode(store, source.getManufacturer());
+				if(manufacturer == null) {
+					throw new ConversionException("Manufacturer [" + source.getManufacturer() + "] does not exist");
+				}
+				destination.setManufacturer(manufacturer);
 			}
 
 			
@@ -130,10 +148,10 @@ public class PersistableProductDefinitionMapper implements Mapper<PersistablePro
 				destination.setDescriptions(descriptions);
 			}
 
-			if(source.getRating() != null) {
-				destination.setProductReviewAvg(new BigDecimal(source.getRating()));
-			}
-			destination.setProductReviewCount(source.getRatingCount());
+			//if(source.getRating() != null) {
+			//	destination.setProductReviewAvg(new BigDecimal(source.getRating()));
+			//}
+			//destination.setProductReviewCount(source.getRatingCount());
 			
 			/**
 			 * Product definition
@@ -150,7 +168,7 @@ public class PersistableProductDefinitionMapper implements Mapper<PersistablePro
 			              defaultPrice = p;
 			              break;
 			            }
-			            p.setDefaultPrice(false);
+			            //p.setDefaultPrice(false);
 			          }
 			        }
 		      }
@@ -160,7 +178,7 @@ public class PersistableProductDefinitionMapper implements Mapper<PersistablePro
 		      productAvailability = new ProductAvailability(destination, store);
 		      destination.getAvailabilities().add(productAvailability);
 		      
-		      productAvailability.setProductQuantity(1);
+		      productAvailability.setProductQuantity(source.getQuantity());
 			  productAvailability.setProductQuantityOrderMin(1);
 			  productAvailability.setProductQuantityOrderMax(1);
 			  productAvailability.setRegion(Constants.ALL_REGIONS);
@@ -174,7 +192,7 @@ public class PersistableProductDefinitionMapper implements Mapper<PersistablePro
 
 			    defaultPrice = new ProductPrice();
 			    defaultPrice.setDefaultPrice(true);
-			    defaultPrice.setProductPriceAmount(new BigDecimal(0));
+			    defaultPrice.setProductPriceAmount(source.getPrice());
 			    defaultPrice.setCode(ProductPriceEntity.DEFAULT_PRICE_CODE);
 			    defaultPrice.setProductAvailability(productAvailability);
                 productAvailability.getPrices().add(defaultPrice);
@@ -187,6 +205,36 @@ public class PersistableProductDefinitionMapper implements Mapper<PersistablePro
                   defaultPrice.getDescriptions().add(ppd);
                 }
 			}
+			
+			if(source.getProductSpecifications()!=null) {
+				destination.setProductHeight(source.getProductSpecifications().getHeight());
+				destination.setProductLength(source.getProductSpecifications().getLength());
+				destination.setProductWeight(source.getProductSpecifications().getWeight());
+				destination.setProductWidth(source.getProductSpecifications().getWidth());
+    			
+    			
+    	         if(source.getProductSpecifications().getManufacturer()!=null) {
+                   
+                   Manufacturer manuf = null;
+                   if(!StringUtils.isBlank(source.getProductSpecifications().getManufacturer())) {
+                       manuf = manufacturerService.getByCode(store, source.getProductSpecifications().getManufacturer());
+                   } 
+                   
+                   if(manuf==null) {
+                       throw new ConversionException("Invalid manufacturer id");
+                   }
+                   if(manuf!=null) {
+                       if(manuf.getMerchantStore().getId().intValue()!=store.getId().intValue()) {
+                           throw new ConversionException("Invalid manufacturer id");
+                       }
+                       destination.setManufacturer(manuf);
+                   }
+               }
+    			
+			}
+			destination.setSortOrder(source.getSortOrder());
+			destination.setProductVirtual(source.isVirtual());
+			destination.setProductShipeable(source.isShipeable());
 			
 			
 			//attributes
