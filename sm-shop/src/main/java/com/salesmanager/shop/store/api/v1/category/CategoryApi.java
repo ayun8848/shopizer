@@ -54,7 +54,7 @@ import springfox.documentation.annotations.ApiIgnore;
 		@Tag(name = "Category management resource", description = "Manage category and attached products") })
 public class CategoryApi {
 
-	private static final int DEFAULT_CATEGORY_DEPTH = 0;
+	private static final int DEFAULT_CATEGORY_DEPTH = 3;
 
 	@Inject
 	private CategoryFacade categoryFacade;

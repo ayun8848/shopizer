@@ -88,7 +88,7 @@ public class CategoryFacadeImpl implements CategoryFacade {
 				returnList.setNumber(categories.size());
 				returnList.setTotalPages(1);
 			} else {
-				org.springframework.data.domain.Page<Category> pageable = categoryService.getListByDepth(parent, language,
+				org.springframework.data.domain.Page<Category> pageable = categoryService.getListLessThanDepth(parent, language,
 						criteria != null ? criteria.getName() : null, depth, page, count);
 				categories = pageable.getContent();
 				returnList.setRecordsTotal(pageable.getTotalElements());

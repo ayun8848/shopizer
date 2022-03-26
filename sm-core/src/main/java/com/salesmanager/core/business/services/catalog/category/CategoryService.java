@@ -46,6 +46,8 @@ public interface CategoryService extends SalesManagerEntityService<Long, Categor
 	
 	Page<Category> getListByDepth(MerchantStore store, Language language, String name, int depth, int page, int count);
 
+	Page<Category> getListLessThanDepth(MerchantStore store, Language language, String name, int depth, int page, int count);
+
 	/**
 	 * Get root categories by store for a given language
 	 * @param store

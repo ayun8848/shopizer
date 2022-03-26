@@ -576,7 +576,7 @@ public class StoreFilter extends HandlerInterceptorAdapter {
 
 			if (objects == null) {
 				// load categories
-				ReadableCategoryList categoryList = categoryFacade.getCategoryHierarchy(store, null, 0, language, null,
+				ReadableCategoryList categoryList = categoryFacade.getCategoryHierarchy(store, null, 2, language, null,
 						0, 200);// null
 				loadedCategories = categoryList.getCategories();
 
@@ -593,7 +593,7 @@ public class StoreFilter extends HandlerInterceptorAdapter {
 
 		} else {
 
-			ReadableCategoryList categoryList = categoryFacade.getCategoryHierarchy(store, null, 0, language, null, 0,
+			ReadableCategoryList categoryList = categoryFacade.getCategoryHierarchy(store, null, 2, language, null, 0,
 					200);// null // filter
 			loadedCategories = categoryList.getCategories();
 		}

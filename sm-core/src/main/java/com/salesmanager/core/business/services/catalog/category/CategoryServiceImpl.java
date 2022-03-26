@@ -415,6 +415,15 @@ public class CategoryServiceImpl extends SalesManagerEntityServiceImpl<Long, Cat
 	}
 
 	@Override
+	public Page<Category> getListLessThanDepth(MerchantStore store, Language language, String name, int depth, int page,
+										int count) {
+
+		Pageable pageRequest = PageRequest.of(page, count);
+
+		return pageableCategoryRepository.listByStore(store.getId(), depth, language.getId(), name, pageRequest);
+	}
+
+	@Override
 	public List<Category> getListByDepth(MerchantStore store, int depth, Language language) {
 		return categoryRepository.find(store.getId(), depth, language.getId(), null);
 	}
