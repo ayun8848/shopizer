@@ -130,7 +130,7 @@ response.setDateHeader ("Expires", -1);
 				<div class="row">
 					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 mar_b-30">
 						<div class="copyright text-left">
-							<p><sm:storeCopy/>&nbsp;-&nbsp;<s:message code="label.generic.providedby" /> <a href="http://www.autopartsprofessor.com" class="footer-href" target="_blank">Auto Parts Professor</a></p>
+							<p><sm:storeCopy/>&nbsp;-&nbsp;<s:message code="label.generic.providedby" /> <a href="https://www.autozorro.com" class="footer-href" target="_blank">Auto Zorro</a></p>
 						</div>
 					</div>
 					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">

@@ -77,7 +77,7 @@ response.setDateHeader ("Expires", -1);
 		    <div id="footer-bottom">
 				<div class="container">
 				   <div class="row-fluid">
-					<div class="span12 text">&copy;&nbsp;<s:message code="label.generic.providedby" /> <a href="www.autopartsprofessor.com" class="footer-href" target="_blank">Auto Parts Professor</div>
+					<div class="span12 text">&copy;&nbsp;<s:message code="label.generic.providedby" /> <a href="https://www.autozorro.com" class="footer-href" target="_blank">Auto Zorro</a></div>
 				   </div>
 				 </div>
 		    </div>

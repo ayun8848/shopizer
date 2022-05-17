@@ -155,7 +155,7 @@ response.setDateHeader ("Expires", -1);
 		<div class="subfooter">
 				<div class="container">
 				   <div class="row">
-					<div class="col-md-6"><sm:storeCopy/>&nbsp;-&nbsp;<s:message code="label.generic.providedby" /> <a href="http://www.autopartsprofessor.com" class="footer-href" target="_blank">Auto Parts Professor</a></div>
+					<div class="col-md-6"><sm:storeCopy/>&nbsp;-&nbsp;<s:message code="label.generic.providedby" /> <a href="https://www.autozorro.com" class="footer-href" target="_blank">Auto Zorro</a></div>
 				    <div class="col-md-6">
 				          <div id="navbar-collapse-2" class="collapse navbar-collapse">
 				                <ul class="nav navbar-nav">
