@@ -359,6 +359,26 @@ public class ProductApi {
 
 	}
 
+	@RequestMapping(value = "/v1/products/code/{code}", method = RequestMethod.GET)
+	@ApiOperation(httpMethod = "GET", value = "Get a product by code", notes = "For administration and shop purpose. Specifying ?merchant is required otherwise it falls back to DEFAULT")
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Single product found", response = ReadableProduct.class) })
+	@ResponseBody
+	@ApiImplicitParams({ @ApiImplicitParam(name = "store", dataType = "String", defaultValue = "DEFAULT"),
+			@ApiImplicitParam(name = "lang", dataType = "String", defaultValue = "en") })
+	public ReadableProduct getCode(@PathVariable final String code, @RequestParam(value = "lang", required = false) String lang,
+								   @ApiIgnore MerchantStore merchantStore, @ApiIgnore Language language, HttpServletResponse response)
+			throws Exception {
+		ReadableProduct product = productFacade.getProduct(merchantStore, code, language);
+
+		if (product == null) {
+			response.sendError(404, "Product not fount for code " + code);
+			return null;
+		}
+
+		return product;
+	}
+
 	@ResponseStatus(HttpStatus.CREATED)
 	@RequestMapping(value = { "/v1/private/product/{productId}/category/{categoryId}",
 			"/v1/auth/product/{productId}/category/{categoryId}" }, method = RequestMethod.POST)
