@@ -1,7 +1,7 @@
 {
 		"properties": {
 			"name": {
-				"type": "keyword",
+				"type": "text",
 				"fields": {
 					"analyzed": {
 						"type": "text",
@@ -40,7 +40,7 @@
 				}
 			},
 			"description": {
-				"type": "keyword",
+				"type": "text",
 				"fields": {
 					"analyzed": {
 						"type": "text",
