@@ -1,7 +1,7 @@
 version: 0.0
 os: linux
 files:
-  - source: sm-shop/target/ROOT.war
+  - source: target/ROOT.war
     destination: /usr/local/
 hooks:
   ApplicationStop:
@@ -16,3 +16,9 @@ hooks:
   ApplicationStart:
     - location: script/startup.sh
       timeout: 5000
+permissions:
+  - object: /
+    pattern: "**"
+    mode: 755
+    type:
+      - file
