@@ -1,0 +1,18 @@
+version: 0.0
+os: linux
+files:
+  - source: sm-shop/target/ROOT.war
+    destination: /usr/local/
+hooks:
+  ApplicationStop:
+    - location: script/shutdown.sh
+      timeout: 10000
+  #  BeforeInstall:
+  #    - location: backup.sh
+  #      timeout: 3000
+  #  AfterInstall:
+  #    - location: backup.sh
+  #      timeout: 3000
+  ApplicationStart:
+    - location: script/startup.sh
+      timeout: 5000
