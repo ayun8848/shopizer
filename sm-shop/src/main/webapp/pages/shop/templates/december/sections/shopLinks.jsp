@@ -10,8 +10,8 @@
 
 
 		<!-- CORE CSS -->
-		<link href="<c:url value="/resources/templates/december/css/bootstrap.min.css" />" rel="stylesheet" type="text/css">
-
+<%--		<link href="<c:url value="/resources/templates/december/css/bootstrap.min.css" />" rel="stylesheet" type="text/css">--%>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 		<!-- more fonts, cursor up -->
         <link href="<c:url value="/resources/templates/december/css/animate.css" />" rel="stylesheet" type="text/css">
         <link href="<c:url value="/resources/templates/december/css/slippry.css" />" rel="stylesheet" type="text/css">
@@ -46,8 +46,9 @@
 		<link href="<c:url value="/resources/templates/december/css/responsive.css" />" rel="stylesheet" type="text/css">
 
 		<script src="<c:url value="/resources/templates/december/js/vendor/modernizr-2.8.3.min.js" />"></script>
-		<script src="<c:url value="/resources/templates/december/js/vendor/jquery-1.12.0.min.js" />"></script>
-    
+<%--		<script src="<c:url value="/resources/templates/december/js/vendor/jquery-1.12.0.min.js" />"></script>--%>
+		<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+
     	<!-- december and common css file -->
     	<link href="<c:url value="/resources/css/sm.css" />" rel="stylesheet">
     	<link href="<c:url value="/resources/css/showLoading.css" />" rel="stylesheet">

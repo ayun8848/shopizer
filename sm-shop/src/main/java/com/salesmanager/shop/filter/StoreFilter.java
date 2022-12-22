@@ -1,6 +1,7 @@
 package com.salesmanager.shop.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import com.salesmanager.core.business.services.catalog.category.CategoryService;
 import com.salesmanager.core.business.services.catalog.product.ProductService;
 import com.salesmanager.core.business.services.content.ContentService;
@@ -551,6 +552,14 @@ public class StoreFilter extends HandlerInterceptorAdapter {
 					}
 				}
 				request.setAttribute(Constants.REQUEST_CONTENT_OBJECTS, contentMap);
+
+				contentByStore.stream().collect(Collectors.groupingBy(Content::getCode)).forEach((code, contentsList)  -> {
+					List<String> descriptions = contentsList.stream().map(Content::getDescription).map(ContentDescription::getDescription).collect(Collectors.toList());
+					LOGGER.info("set request attribute [{}] for store [{}]",
+							Constants.REQUEST_CONTENT_OBJECTS + "." + code,
+							store.getCode());
+					request.setAttribute(Constants.REQUEST_CONTENT_OBJECTS + "." + code, descriptions);
+				});
 			}
 
 		}

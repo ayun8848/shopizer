@@ -11,7 +11,9 @@
 
     
     
-    <script src="<c:url value="/resources/templates/december/js/bootstrap.min.js" />"></script>
+<%--    <script src="<c:url value="/resources/templates/december/js/bootstrap.min.js" />"></script>--%>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
     <script src="<c:url value="/resources/templates/december/js/owl.carousel.min.js" />"></script>
     <script src="<c:url value="/resources/templates/december/js/jquery.meanmenu.js" />"></script>
     <script src="<c:url value="/resources/templates/december/js/jquery-ui.min.js" />"></script>

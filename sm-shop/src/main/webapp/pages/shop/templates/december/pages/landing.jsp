@@ -33,8 +33,59 @@ response.setDateHeader ("Expires", -1);
 		<c:otherwise>
 		</c:otherwise>
 		</c:choose>
+<%--		<div id="banner-slider" class="carousel slide" data-ride="carousel" data-interval="3000">--%>
+<%--			<!-- Indicators -->--%>
+<%--			<ol class="carousel-indicators">--%>
+<%--				<c:if test="${requestScope['CONTENT.bannerImage'] != null}">--%>
+<%--					<c:forEach items="${requestScope['CONTENT.bannerImage']}" var="branner" varStatus="status">--%>
+<%--						<c:choose>--%>
+<%--							<c:when test="${status.index == 0}">--%>
+<%--								<li data-target="#banner-slider" data-slide-to="${status.index}" class="active"></li>--%>
+<%--							</c:when>--%>
+<%--							<c:otherwise>--%>
+<%--								<li data-target="#banner-slider" data-slide-to="${status.index}"></li>--%>
+<%--							</c:otherwise>--%>
+<%--						</c:choose>--%>
+<%--					</c:forEach>--%>
+<%--				</c:if>--%>
+<%--			</ol>--%>
 
-		
+<%--			<!-- Wrapper for slides -->--%>
+<%--			<div class="carousel-inner" role="listbox">--%>
+<%--				<c:if test="${requestScope['CONTENT.bannerImage'] != null}">--%>
+<%--					<c:forEach items="${requestScope['CONTENT.bannerImage']}" var="description" varStatus="status">--%>
+<%--						<c:choose>--%>
+<%--							<c:when test="${status.index == 0}">--%>
+<%--								<div class="item active">--%>
+<%--									<c:out value="${description}" escapeXml="false"/>--%>
+<%--									<div class="carousel-caption">--%>
+<%--									</div>--%>
+<%--								</div>--%>
+<%--							</c:when>--%>
+<%--							<c:otherwise>--%>
+<%--								<div class="item">--%>
+<%--									<c:out value="${description}" escapeXml="false"/>--%>
+<%--									<div class="carousel-caption">--%>
+<%--									</div>--%>
+<%--								</div>--%>
+<%--							</c:otherwise>--%>
+<%--						</c:choose>--%>
+<%--					</c:forEach>--%>
+<%--				</c:if>--%>
+<%--			</div>--%>
+
+<%--			<!-- Controls -->--%>
+<%--			<a class="left carousel-control" href="#banner-slider" role="button" data-slide="prev">--%>
+<%--				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>--%>
+<%--				<span class="sr-only">Previous</span>--%>
+<%--			</a>--%>
+<%--			<a class="right carousel-control" href="#banner-slider" role="button" data-slide="next">--%>
+<%--				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>--%>
+<%--				<span class="sr-only">Next</span>--%>
+<%--			</a>--%>
+<%--		</div>--%>
+		<!-- slider-area-end -->
+
 		<!-- home page - top category CUSTOM CONTENT in home page -->
 		<c:if test="${page!=null}">
 			<div class="service-area pt-80">
