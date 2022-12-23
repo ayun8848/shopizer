@@ -46,8 +46,6 @@
 		<dependency>
 			<groupId>com.shopizer</groupId>
 			<artifactId>sm-search</artifactId>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/sm-search-2.11.1.jar</systemPath>
 		</dependency>
 
 		<!-- Spring boot starters -->
