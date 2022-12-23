@@ -3,12 +3,10 @@
 *.jar
 *.lst
 */target/
-*.class
 *.idea/
 *.iml
 */target/*
 .idea/workspace.xml
-*.class
 /bin/
 /WebContent/
 sm-shop/SALESMANAGER.lock.db
@@ -26,14 +24,6 @@ sm-shop/.project
 **/build
 **/.settings
 **/.classpath
-*/sm-shop/src/main/resources/*
-sm-shop/src/main/resources/database.properties
-.DS_Store
 
 .mvnw/*.jar
 *.dat
-sm-shop/files/store/DownlaodRepository.dat
-*.dat
-sm-shop/files/store/DownlaodRepository.dat
-sm-shop/src/main/resources/application.properties
-sm-shop/src/main/resources/database.properties
