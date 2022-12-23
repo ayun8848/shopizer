@@ -46,6 +46,8 @@
 		<dependency>
 			<groupId>com.shopizer</groupId>
 			<artifactId>sm-search</artifactId>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/sm-search-2.11.1.jar</systemPath>
 		</dependency>
 
 		<!-- Spring boot starters -->
@@ -183,7 +185,6 @@
 			<version>1.5.11</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.passay/passay -->
 		<!-- Password rules library -->
 		<dependency>
 			<groupId>org.passay</groupId>
@@ -191,7 +192,26 @@
 			<version>1.6.0</version>
 		</dependency>
 
+		<!-- AspectJ -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+		</dependency>
 
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>log4j-over-slf4j</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.elasticsearch.client</groupId>
+			<artifactId>elasticsearch-rest-high-level-client</artifactId>
+		</dependency>
 
 	</dependencies>
 
