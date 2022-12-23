@@ -43,14 +43,9 @@
 		</dependency>
 
 		<!-- sm-search -->
-<!--		<dependency>-->
-<!--			<groupId>com.shopizer</groupId>-->
-<!--			<artifactId>sm-search</artifactId>-->
-<!--		</dependency>-->
 		<dependency>
 			<groupId>com.shopizer</groupId>
 			<artifactId>sm-search</artifactId>
-			<version>2.11.1</version>
 			<scope>system</scope>
 			<systemPath>${project.basedir}/lib/sm-search-2.11.1.jar</systemPath>
 		</dependency>
