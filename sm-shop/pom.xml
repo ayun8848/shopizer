@@ -42,6 +42,13 @@
 			<artifactId>sm-shop-model</artifactId>
 		</dependency>
 
+		<!-- excel -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.9</version>
+		</dependency>
+
 		<!-- sm-search -->
 		<dependency>
 			<groupId>com.shopizer</groupId>

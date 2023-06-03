@@ -18,6 +18,7 @@ import com.salesmanager.core.model.reference.language.Language;
 import com.salesmanager.core.modules.integration.IntegrationException;
 import com.salesmanager.shop.admin.model.orders.Refund;
 import com.salesmanager.shop.constants.Constants;
+import com.salesmanager.shop.laapp.ExcelService;
 import com.salesmanager.shop.utils.DateUtil;
 import com.salesmanager.shop.utils.EmailTemplatesUtils;
 import com.salesmanager.shop.utils.LabelUtils;
@@ -36,10 +37,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.inject.Inject;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
+import java.net.URLEncoder;
 import java.util.*;
 
 /**
@@ -56,6 +60,9 @@ private static final Logger LOGGER = LoggerFactory.getLogger(OrderActionsControl
 	
 	@Inject
 	private OrderService orderService;
+
+	@Inject
+	private ExcelService excelService;
 	
 	@Inject
 	CountryService countryService;
@@ -282,6 +289,36 @@ private static final Logger LOGGER = LoggerFactory.getLogger(OrderActionsControl
 		}
 			
 		
+	}
+
+	@PreAuthorize("hasRole('ORDER')")
+	@RequestMapping(value="/admin/orders/download_excel", method= RequestMethod.GET)
+	//获取url链接上的参数
+	public @ResponseBody String downloadExcel(HttpServletRequest request, HttpServletResponse response, Locale locale)throws Exception {
+
+		String sId = request.getParameter("id");
+		response.setContentType("application/binary;charset=UTF-8");
+		try{
+
+			Long id = Long.parseLong(sId);
+
+			MerchantStore store = (MerchantStore)request.getAttribute(Constants.ADMIN_STORE);
+
+
+			ServletOutputStream out=response.getOutputStream();
+			try {
+				//设置文件头：最后一个参数是设置下载文件名(这里我们叫：张三.pdf)
+				response.setHeader("Content-Disposition", "attachment;fileName=" + URLEncoder.encode("pedido"+sId+".xls", "UTF-8"));
+			} catch (UnsupportedEncodingException e1) {
+				e1.printStackTrace();
+			}
+
+			excelService.export(id, store, out);
+			return "success";
+		} catch(Exception e){
+			e.printStackTrace();
+			return "download failed";
+		}
 	}
 	
 
