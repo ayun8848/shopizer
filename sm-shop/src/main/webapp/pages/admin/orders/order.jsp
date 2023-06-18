@@ -4,8 +4,8 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="/WEB-INF/shopizer-tags.tld" prefix="sm" %> 
-<%@ page session="false" %>				
-				
+<%@ page session="false" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <link href="<c:url value="/resources/css/bootstrap/css/datepicker.css" />" rel="stylesheet"></link>
 <script src="<c:url value="/resources/js/bootstrap/bootstrap-datepicker.js" />"></script>
@@ -136,6 +136,11 @@ function sendInvoice(orderId){
 		  }
 	
 	});
+}
+
+function downloadExcel(orderId) {
+	var url="/admin/orders/download_excel?id=" + orderId;
+	window.open(url);
 }
 
 function updateStatus(orderId){
@@ -644,6 +649,9 @@ function captureOrder(orderId){
 	                         <form:textarea  cols="10" rows="3" path="orderHistoryComment"/>
 	                    </div> 
 	               </div>
+				<div class="control-group">
+					<input type="button" value="Excel" onclick="downloadExcel('<c:out value="${order.order.id}"/>')"/>
+				</div>
               
 	              <div class="form-actions">
 	              		<button  type="submit" class="btn btn-medium btn-primary" ><s:message code="button.label.save" text="Save"/></button>
