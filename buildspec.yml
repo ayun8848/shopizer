@@ -17,11 +17,11 @@ version: 0.2
   #build-matrix:
 #build-graph:
 phases:
-  #install:
-  #如果您使用的是 Ubuntu 标准映像 2.0 或更高版本，则必须指定运行时版本。
-  #如果您指定了运行时版本，但是使用 Ubuntu 标准映像 2.0 以外的映像，则构建将失败。
-  runtime-versions:
-    java: corretto11
+  install:
+    #如果您使用的是 Ubuntu 标准映像 2.0 或更高版本，则必须指定运行时版本。
+    #如果您指定了运行时版本，但是使用 Ubuntu 标准映像 2.0 以外的映像，则构建将失败。
+    runtime-versions:
+      java: corretto11
   #commands:
   # - command
   #pre_build:
