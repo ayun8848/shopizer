@@ -101,6 +101,17 @@ public class CategoryApi {
 		return new ResponseEntity<EntityExists>(new EntityExists(isCategoryExist), HttpStatus.OK);
 	}
 
+	@ResponseStatus(HttpStatus.OK)
+	@GetMapping(value = { "/private/category/code" }, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiImplicitParams({ @ApiImplicitParam(name = "store", dataType = "string", defaultValue = "DEFAULT"),
+			@ApiImplicitParam(name = "lang", dataType = "string", defaultValue = "en") })
+	@ApiOperation(httpMethod = "GET", value = "Check if category code already exists", notes = "", response = EntityExists.class)
+	public ReadableCategory getIdByCode(@RequestParam(value = "code") String code,
+											   @ApiIgnore MerchantStore merchantStore, @ApiIgnore Language language) throws Exception {
+		ReadableCategory category = categoryFacade.getByCode(merchantStore, code, language);
+		return category;
+	}
+
 	/**
 	 * Get all category starting from root filter can be used for filtering on
 	 * fields only featured is supported
