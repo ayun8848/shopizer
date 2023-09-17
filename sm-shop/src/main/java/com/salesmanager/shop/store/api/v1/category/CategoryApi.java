@@ -102,14 +102,15 @@ public class CategoryApi {
 	}
 
 	@ResponseStatus(HttpStatus.OK)
-	@GetMapping(value = { "/private/category/code" }, produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = { "/private/category/getidbycode" }, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiImplicitParams({ @ApiImplicitParam(name = "store", dataType = "string", defaultValue = "DEFAULT"),
 			@ApiImplicitParam(name = "lang", dataType = "string", defaultValue = "en") })
 	@ApiOperation(httpMethod = "GET", value = "Check if category code already exists", notes = "", response = EntityExists.class)
-	public ReadableCategory getIdByCode(@RequestParam(value = "code") String code,
+	public Long getIdByCode(@RequestParam(value = "code") String code,
 											   @ApiIgnore MerchantStore merchantStore, @ApiIgnore Language language) throws Exception {
 		ReadableCategory category = categoryFacade.getByCode(merchantStore, code, language);
-		return category;
+
+		return category.getId();
 	}
 
 	/**
