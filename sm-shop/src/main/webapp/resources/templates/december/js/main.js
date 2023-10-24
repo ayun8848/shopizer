@@ -42,6 +42,7 @@
     	  // options
     	  adaptiveHeight: false, // height of the sliders adapts to current 
     	  captions: false,
+          useCSS: false,
     	  
     	  pager: false,
 
