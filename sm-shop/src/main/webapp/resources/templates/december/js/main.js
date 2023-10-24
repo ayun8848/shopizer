@@ -37,25 +37,26 @@
     jQuery('#home-banner').slippry({
     	  // general elements & wrapper
     	  slippryWrapper: '<div class="sy-box banner-slider" />', // wrapper to wrap everything, including pager
-    	  elements: 'article', // elments cointaining slide content
+        //elements: 'article', // elments cointaining slide content
 
-    	  // options
-    	  adaptiveHeight: false, // height of the sliders adapts to current 
-    	  captions: false,
-          useCSS: false,
-    	  
-    	  pager: false,
+        // options
+        adaptiveHeight: false, // height of the sliders adapts to current
+        //captions: false,
+        useCSS: false,
+        autoHover: false,
 
-    	  // pager
-    	  //pagerClass: 'banner-pager',
+        //pager: false,
 
-    	  // transitions
-    	  transition: 'horizontal', // fade, horizontal, kenburns, false
-    	  speed: 1200,
-    	  pause: 8000,
+        // pager
+        //pagerClass: 'banner-pager',
 
-    	  // slideshow
-    	  autoDirection: 'prev'
+        // transitions
+        transition: 'horizontal', // fade, horizontal, kenburns, false
+        //speed: 1200,
+        //pause: 8000,
+
+        // slideshow
+        autoDirection: 'next'
     });
     
     
