@@ -119,7 +119,7 @@ public class MultipleEntryPointsSecurityConfig {
 		protected void configure(HttpSecurity http) throws Exception {
 			http
 			.antMatcher("/shop/**")
-			.csrf().disable()			
+			.csrf().disable()
 			.authorizeRequests()
 					.antMatchers("/shop/").permitAll()
 					.antMatchers("/shop/**").permitAll()
@@ -130,6 +130,8 @@ public class MultipleEntryPointsSecurityConfig {
 					.antMatchers("/shop/customer/denied*").permitAll()
 					.antMatchers("/shop/customer/**").hasRole("AUTH_CUSTOMER")
 					.antMatchers("/shop/search/search.html").authenticated()
+					.antMatchers("/shop/category/**").authenticated()
+					.antMatchers("/shop/product/**").authenticated()
 					.anyRequest().authenticated()
 					.and()
 					.httpBasic()
