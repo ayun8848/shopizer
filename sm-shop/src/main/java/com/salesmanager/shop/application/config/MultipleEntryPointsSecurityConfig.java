@@ -129,6 +129,7 @@ public class MultipleEntryPointsSecurityConfig {
 					.antMatchers("/shop/customer/customLogon*").permitAll()
 					.antMatchers("/shop/customer/denied*").permitAll()
 					.antMatchers("/shop/customer/**").hasRole("AUTH_CUSTOMER")
+					.antMatchers("/shop/search/search.html").authenticated()
 					.anyRequest().authenticated()
 					.and()
 					.httpBasic()
@@ -143,7 +144,6 @@ public class MultipleEntryPointsSecurityConfig {
 					.invalidateHttpSession(false)
 					.and()
 					.exceptionHandling().accessDeniedPage("/shop/");
-
 		}
 
 		@Bean
@@ -392,7 +392,6 @@ public class MultipleEntryPointsSecurityConfig {
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
 			http
-			
 				.antMatcher(API_VERSION + "/auth/**")
 				.authorizeRequests()
 					.antMatchers(API_VERSION + "/auth/refresh").permitAll()
