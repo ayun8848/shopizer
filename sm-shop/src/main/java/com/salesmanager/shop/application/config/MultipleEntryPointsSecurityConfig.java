@@ -37,7 +37,7 @@ import com.salesmanager.shop.store.security.services.CredentialsServiceImpl;
  *
  */
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity(debug = true)
 public class MultipleEntryPointsSecurityConfig {
 
 	private static final String API_VERSION = "/api/v*";
