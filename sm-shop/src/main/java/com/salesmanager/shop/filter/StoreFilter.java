@@ -611,8 +611,7 @@ public class StoreFilter extends HandlerInterceptorAdapter {
 			loadedCategories = categoryList.getCategories();
 		}
 
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if (loadedCategories != null && authentication != null && authentication.isAuthenticated() && !trustResolver.isAnonymous(authentication)) {
+		if (loadedCategories != null) {
 			request.setAttribute(Constants.REQUEST_TOP_CATEGORIES, loadedCategories);
 		}
 
