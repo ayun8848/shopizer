@@ -7,6 +7,8 @@ import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.AuthenticationTrustResolver;
+import org.springframework.security.authentication.AuthenticationTrustResolverImpl;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -16,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
@@ -72,8 +75,11 @@ public class MultipleEntryPointsSecurityConfig {
 		return new com.salesmanager.shop.store.controller.customer.facade.CustomerFacadeImpl();
 	}
 
-	
-	
+	@Bean
+	public AuthenticationTrustResolver trustResolver(){
+		return new AuthenticationTrustResolverImpl();
+	}
+
 	/**
 	 * shop / customer
 	 * 
@@ -135,7 +141,7 @@ public class MultipleEntryPointsSecurityConfig {
 					.anyRequest().authenticated()
 					.and()
 					.httpBasic()
-					.authenticationEntryPoint(shopAuthenticationEntryPoint())
+					.authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/shop/customer/customLogon.html"))
 					.and()
 					.logout()
 					.logoutUrl("/shop/customer/logout")

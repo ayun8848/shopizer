@@ -44,6 +44,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.ModelAndView;
@@ -108,6 +109,9 @@ public class StoreFilter extends HandlerInterceptorAdapter {
 
 	private final static String SERVICES_URL_PATTERN = "/services";
 	private final static String REFERENCE_URL_PATTERN = "/reference";
+
+	@Inject
+	private AuthenticationTrustResolver trustResolver;
 
 	/**
 	 * Default constructor.
@@ -555,7 +559,7 @@ public class StoreFilter extends HandlerInterceptorAdapter {
 
 				contentByStore.stream().collect(Collectors.groupingBy(Content::getCode)).forEach((code, contentsList)  -> {
 					List<String> descriptions = contentsList.stream().map(Content::getDescription).map(ContentDescription::getDescription).collect(Collectors.toList());
-					LOGGER.info("set request attribute [{}] for store [{}]",
+					LOGGER.debug("set request attribute [{}] for store [{}]",
 							Constants.REQUEST_CONTENT_OBJECTS + "." + code,
 							store.getCode());
 					request.setAttribute(Constants.REQUEST_CONTENT_OBJECTS + "." + code, descriptions);
@@ -608,7 +612,7 @@ public class StoreFilter extends HandlerInterceptorAdapter {
 		}
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if (loadedCategories != null && authentication != null && authentication.isAuthenticated()) {
+		if (loadedCategories != null && authentication != null && authentication.isAuthenticated() && !trustResolver.isAnonymous(authentication)) {
 			request.setAttribute(Constants.REQUEST_TOP_CATEGORIES, loadedCategories);
 		}
 
