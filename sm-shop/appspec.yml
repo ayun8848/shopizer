@@ -6,7 +6,7 @@ files:
 file_exists_behavior: OVERWRITE
 hooks:
   ApplicationStop:
-    - location: /usr/local/tomcat/bin/shutdown.sh
+    - location: shutdown.sh
       timeout: 30
       runas: ec2-user
   #  BeforeInstall:
@@ -16,7 +16,7 @@ hooks:
   #    - location: backup.sh
   #      timeout: 3000
   ApplicationStart:
-    - location: /usr/local/tomcat/bin/startup.sh
+    - location: startup.sh
       timeout: 120
       runas: ec2-user
 permissions:
