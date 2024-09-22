@@ -17,4 +17,6 @@
 #        $TOMCAT_HOME/bin/startup.sh
 #fi
 
-/usr/local/tomcat/bin/startup.sh
+if [ -f "/usr/local/tomcat/bin/startup.sh" ]; then
+  sh -c "/usr/local/tomcat/bin/startup.sh"
+fi

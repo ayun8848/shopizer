@@ -17,4 +17,6 @@
 #        $TOMCAT_HOME/bin/shutdown.sh
 #fi
 
-/usr/local/tomcat/bin/shutdown.sh
+if [ -f "/usr/local/tomcat/bin/shutdown.sh" ]; then
+  sh -c "/usr/local/tomcat/bin/shutdown.sh"
+fi
