@@ -1,12 +1,12 @@
 version: 0.0
 os: linux
 files:
-  - source: ./ROOT.war
+  - source: ROOT.war
     destination: /usr/local/tomcat/webapps
 file_exists_behavior: OVERWRITE
 hooks:
   ApplicationStop:
-    - location: shutdown.sh
+    - location: /usr/local/tomcat/bin/shutdown.sh
       timeout: 30
       runas: ec2-user
   #  BeforeInstall:
@@ -16,7 +16,7 @@ hooks:
   #    - location: backup.sh
   #      timeout: 3000
   ApplicationStart:
-    - location: startup.sh
+    - location: /usr/local/tomcat/bin/startup.sh
       timeout: 120
       runas: ec2-user
 permissions:
@@ -27,3 +27,4 @@ permissions:
     group: ec2-user
     type:
       - file
+      - directory
