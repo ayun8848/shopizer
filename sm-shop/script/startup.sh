@@ -17,6 +17,14 @@
 #        $TOMCAT_HOME/bin/startup.sh
 #fi
 
-if [ -f "/usr/local/tomcat/bin/startup.sh" ]; then
-  sh -c "/usr/local/tomcat/bin/startup.sh"
+APP_DATA_DIR="/data/shopizer"
+if [ ! -d $APP_DATA_DIR ]; then
+  echo "create application data directory: $APP_DATA_DIR"
+  mkdir -p $APP_DATA_DIR
+fi
+
+[ -z "$TOMCAT_HOME" ] && TOMCAT_HOME="/usr/local/tomcat"
+
+if [ -f "$TOMCAT_HOME/startup.sh" ]; then
+  sh -c "$TOMCAT_HOME/startup.sh"
 fi

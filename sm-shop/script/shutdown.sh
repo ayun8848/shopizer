@@ -16,7 +16,8 @@
 #        echo "stop tomcat..."
 #        $TOMCAT_HOME/bin/shutdown.sh
 #fi
+[ -z "$TOMCAT_HOME" ] && TOMCAT_HOME="/usr/local/tomcat"
 
-if [ -f "/usr/local/tomcat/bin/shutdown.sh" ]; then
-  sh -c "/usr/local/tomcat/bin/shutdown.sh"
+if [ -f "$TOMCAT_HOME/shutdown.sh" ]; then
+  sh -c "$TOMCAT_HOME/shutdown.sh"
 fi
